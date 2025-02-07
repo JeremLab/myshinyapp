@@ -3,13 +3,18 @@ library(dplyr)
 library(ggplot2)
 library(glue)
 library(DT)
+library(bslib)
+library(thematic)
 
+thematic_shiny(font = "auto")
 ui <- fluidPage(
+  theme = bs_theme(version = 5,
+                   bootswatch = "lux"),
   titlePanel("My First Shiny"),
   h1("Star Wars Characters"),
   selectInput(
     inputId = "choix_genre",
-    choices = c("masculine", "feminine", NA),
+    choices = c("masculine", "feminine"),
     label = "Choose the good gender for the character",
     selected = NULL,
     multiple = FALSE,
@@ -43,8 +48,8 @@ server <- function(input, output) {
       ggplot(aes(x = height)) +
       geom_histogram(
         binwidth = 10,
-        fill = "darkgrey",
-        color = "white"
+        fill = "white",
+        color = "black"
       ) + 
       labs(
         title = glue("Vous avez selectionné le genre : {input$choix_genre}")
