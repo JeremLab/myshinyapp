@@ -30,7 +30,9 @@ ui <- fluidPage(
         min = 0,
         max = 250,
         value = 30
-      )
+      ),
+      actionButton(inputId = "boutton",
+                   label = "Cliquez moi")
     ),
     mainPanel(
       plotOutput("StarWarsPlot")
@@ -68,6 +70,10 @@ server <- function(input, output) {
     starwars |>
       filter(height > input$taille) |>
       filter(gender %in% input$choix_genre)
+  })
+  
+  observeEvent(input$boutton, {
+    message("Vous avez cliqué sur le boutton")
   })
 }
 
