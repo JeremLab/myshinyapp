@@ -75,7 +75,9 @@ server <- function(input, output) {
   observeEvent(input$boutton, {
     message("Vous avez cliqué sur le boutton")
   })
+  observeEvent(input$taille, { 
+    showNotification("La valeur du slider a changé !", 
+                     type = "message") })
 }
-
 
 shinyApp(ui = ui, server = server)
